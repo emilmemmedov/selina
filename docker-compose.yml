@@ -14,7 +14,6 @@ services:
         - ./application:/application
       networks: 
         selina:
-
     webserver: 
       image: nginx:alpine
       container_name: ${PROJECT_NAME}-webserver
@@ -28,13 +27,12 @@ services:
         - "4443:443"
       networks:
         selina:
-
-    postgres:
+    db:
       image: postgres:14-alpine
       container_name: ${PROJECT_NAME}-postgres
       restart: unless-stopped
       volumes:
-        - "./sourcefiles/postgres:/var/lib/postgresql/data"
+        - ./sourcefiles/postgres:/var/lib/postgresql/data
       environment:
         - POSTGRES_USER=${DB_USERNAME}
         - POSTGRES_PASSWORD=${DB_PASSWORD}

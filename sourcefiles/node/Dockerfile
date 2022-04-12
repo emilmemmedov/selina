@@ -4,7 +4,11 @@ WORKDIR /application
 
 COPY package*.json /application/
 
-#RUN npm install
+RUN npm install
+
+RUN npm i -g typeorm
+
+RUN npm install -g ts-node
 
 COPY . /application
 

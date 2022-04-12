@@ -11,8 +11,13 @@ export const typeormConfig: TypeOrmModuleOptions = {
   username: get('DB_USERNAME').required().asString(),
   password: get('DB_PASSWORD').required().asString(),
   database: get('DB_DATABASE').required().asString(),
-  entities: ['dist/**/*.entity{.ts,.js}'],
+  cli: {
+    migrationsDir: '/src/infrastructure/database/migrations',
+  },
+  entities: ['src/**/*.orm-entity.ts'],
+  migrations: ['src/**/migrations/*.ts'],
   autoLoadEntities: true,
+  migrationsTableName: 'migrations',
   connectTimeoutMS: 2000,
   logging: ['error', 'migration', 'schema'],
 };
